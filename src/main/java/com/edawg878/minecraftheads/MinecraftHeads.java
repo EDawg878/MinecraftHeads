@@ -87,7 +87,7 @@ public class MinecraftHeads extends JavaPlugin {
             if (categories != null) {
                 heads = new TreeMap<String, Map<String, String>>();
                 for (String category : categories) {
-                    heads.put(category.toLowerCase(), new TreeMap<String, String>());
+                    heads.put(format(category.toLowerCase()), new TreeMap<String, String>());
                 }
                 String[] nextLine;
                 while ((nextLine = reader.readNext()) != null) {
@@ -96,7 +96,7 @@ public class MinecraftHeads extends JavaPlugin {
                         if (count++ < categories.length) {
                             String[] split = entry.split(":");
                             if (split.length == 2) {
-                                heads.get(categories[count-1].toLowerCase()).put(split[0], split[1]);
+                                heads.get(categories[count-1].toLowerCase()).put(format(split[0]), format(split[1]));
                             }
                         }
                     }
@@ -107,5 +107,9 @@ public class MinecraftHeads extends JavaPlugin {
         } catch (IOException ex) {
             getLogger().severe("Error reading from file");
         }
+    }
+    
+    private String format(String word) {
+        return word.replace(" ", "_");
     }
 }
