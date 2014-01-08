@@ -4,7 +4,7 @@
   <groupId>com.edawg878.minecraftheads</groupId>
   <artifactId>MinecraftHeads</artifactId>
   <name>MinecraftHeads</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.02</version>
   <url>EDawg878.com</url>
   <build>
     <plugins>
