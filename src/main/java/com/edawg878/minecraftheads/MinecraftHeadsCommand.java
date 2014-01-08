@@ -17,13 +17,13 @@ import org.bukkit.command.CommandSender;
  * @author EDawg878 <EDawg878@gmail.com>
  */
 public class MinecraftHeadsCommand implements CommandExecutor {
-
+    
     private final MinecraftHeads plugin;
-
+    
     public MinecraftHeadsCommand(MinecraftHeads instance) {
         plugin = instance;
     }
-
+    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
@@ -53,18 +53,18 @@ public class MinecraftHeadsCommand implements CommandExecutor {
         invalidArgument(sender);
         return false;
     }
-
+    
     private void invalidArgument(CommandSender sender) {
         sender.sendMessage(ChatColor.RED + "Invalid Argument");
     }
-
+    
     private void showCategories(CommandSender sender) {
         sender.sendMessage(ChatColor.GOLD + "Available Categories: ");
         for (String category : plugin.getHeads().keySet()) {
             sender.sendMessage(ChatColor.RED + "- " + ChatColor.GOLD + WordUtils.capitalize(category));
         }
     }
-
+    
     private void showAvailableHeads(CommandSender sender, String category, int page) {
         category = category.toLowerCase();
         if (plugin.getHeads().containsKey(category)) {
@@ -86,20 +86,24 @@ public class MinecraftHeadsCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Invalid Category");
         }
     }
-
+    
     private void download(final CommandSender sender) {
-        sender.sendMessage(ChatColor.GOLD + "Downloading latest heads...");
-        plugin.download(sender, new Callback() {
-
-            public void onCompletion() {
-                sender.sendMessage(ChatColor.GOLD + "File dowload complete");
-            }
-
-            public void onFailure() {
-                sender.sendMessage(ChatColor.RED + "Error downloading file");
-            }
-
-        });
+        if (sender.hasPermission("mcheads.download")) {
+            sender.sendMessage(ChatColor.GOLD + "Downloading latest heads...");
+            plugin.download(sender, new Callback() {
+                
+                public void onCompletion() {
+                    sender.sendMessage(ChatColor.GOLD + "File download complete");
+                }
+                
+                public void onFailure() {
+                    sender.sendMessage(ChatColor.RED + "Error downloading file");
+                }
+                
+            });
+        } else {
+            sender.sendMessage(ChatColor.RED + "No permission");
+        }
     }
-
+    
 }

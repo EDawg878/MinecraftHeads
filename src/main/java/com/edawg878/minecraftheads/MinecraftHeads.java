@@ -77,7 +77,7 @@ public class MinecraftHeads extends JavaPlugin {
 
     private void setupConfig() {
         getConfig().addDefault("spreadsheet-url", "https://docs.google.com/spreadsheet/pub?key=0AtAZ7aOy1ZWQdE40TUhtNHU1NmstR1VKUlo0aEZleEE&output=csv");
-        getConfig().options().copyDefaults(true);
+        getConfig().options().copyDefaults(false);
         saveConfig();
     }
 
