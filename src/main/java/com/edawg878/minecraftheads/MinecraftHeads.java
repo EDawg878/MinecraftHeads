@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import net.minecraft.util.org.apache.commons.io.FileUtils;
@@ -20,7 +19,7 @@ public class MinecraftHeads extends JavaPlugin {
     private static final String FILE_NAME = "minecraftheads.csv";
     private URL url;
     private File file;
-    private TreeMap<String, Map<String, String>> heads;
+    private Map<String, Map<String, String>> heads;
 
     @Override
     public void onEnable() {
@@ -58,7 +57,7 @@ public class MinecraftHeads extends JavaPlugin {
         void onFailure();
     }
 
-    public TreeMap<String, Map<String, String>> getHeads() {
+    public Map<String, Map<String, String>> getHeads() {
         return heads;
     }
 
@@ -88,7 +87,7 @@ public class MinecraftHeads extends JavaPlugin {
             if (categories != null) {
                 heads = new TreeMap<String, Map<String, String>>();
                 for (String category : categories) {
-                    heads.put(category.toLowerCase(), new HashMap<String, String>());
+                    heads.put(category.toLowerCase(), new TreeMap<String, String>());
                 }
                 String[] nextLine;
                 while ((nextLine = reader.readNext()) != null) {
