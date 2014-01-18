@@ -112,7 +112,7 @@ public class MinecraftHeadsCommand implements CommandExecutor, TabCompleter {
             if (plugin.isCategory(category)) {
                 List<Head> heads = plugin.getHeads(category);
                 final int pagesize = 8;
-                int maxpage = (int) Math.ceil(heads.size() / pagesize);
+                int maxpage = (int) Math.ceil(heads.size() / (double) pagesize);
                 if (page > 0 && page <= maxpage) {
                     sender.sendMessage(ChatColor.GOLD + "Heads in Category " + category + ": (page " + page + "/" + maxpage + ")");
                     for (int i = (page - 1) * pagesize; i < heads.size() && i < page * pagesize; i++) {
