@@ -226,7 +226,7 @@ public class MinecraftHeadsCommand implements CommandExecutor, TabCompleter {
         if (sender.isOp() || sender.hasPermission("mcheads.removeunsafe")) {
             plugin.removeUnsafe();
             plugin.reload();
-            sender.sendMessage(ChatColor.GOLD + "MinecraftHeads removed All unsafe heads");
+            sender.sendMessage(ChatColor.GOLD + "MinecraftHeads removed all unsafe heads");
         } else {
             sender.sendMessage(ChatColor.RED + "No permission");
         }
