@@ -25,6 +25,7 @@ public class MinecraftHeadsCommand implements CommandExecutor, TabCompleter {
         this.plugin = instance;
     }
 
+    @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1 && sender.isOp() || sender.hasPermission("mcheads.get")) {
             return plugin.getHeadCompletions(args[0].toLowerCase());
@@ -35,6 +36,7 @@ public class MinecraftHeadsCommand implements CommandExecutor, TabCompleter {
         return null;
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
             getPlayerHead(sender, sender.getName(), 1);
@@ -155,6 +157,7 @@ public class MinecraftHeadsCommand implements CommandExecutor, TabCompleter {
         if (sender.isOp() || sender.hasPermission("mcheads.download")) {
             sender.sendMessage(ChatColor.GOLD + "Downloading latest heads...");
             plugin.download(sender, new Callback() {
+
                 @Override
                 public void onCompletion() {
                     sender.sendMessage(ChatColor.GOLD + "File download complete");

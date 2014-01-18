@@ -50,7 +50,7 @@ public class MinecraftHeads extends JavaPlugin {
         getCommand("mcheads").setExecutor(new MinecraftHeadsCommand(this));
     }
 
-    public void download(CommandSender sender, final Callback callback) {
+    void download(CommandSender sender, final Callback callback) {
         getServer().getScheduler().runTaskAsynchronously(this, new Runnable() {
             public void run() {
                 try {
@@ -66,15 +66,15 @@ public class MinecraftHeads extends JavaPlugin {
         });
     }
 
-    public void reload() {
+    void reload() {
         loadFromFile(file);
     }
 
-    public Head getHead(String key) {
+    Head getHead(String key) {
         return heads.get(key.toLowerCase());
     }
 
-    public List<String> getHeadCompletions(String arg) {
+    List<String> getHeadCompletions(String arg) {
         List<String> completions = new ArrayList<String>();
         for (String key : heads.keySet()) {
             if (key.startsWith(arg)) {
@@ -85,7 +85,7 @@ public class MinecraftHeads extends JavaPlugin {
         return completions;
     }
 
-    public List<String> getCategoryCompletions(String arg) {
+    List<String> getCategoryCompletions(String arg) {
         List<String> completions = new ArrayList<String>();
         for (String key : categories.keySet()) {
             if (key.startsWith(arg)) {
@@ -96,19 +96,19 @@ public class MinecraftHeads extends JavaPlugin {
         return completions;
     }
 
-    public List<Head> getHeads(String category) {
+    List<Head> getHeads(String category) {
         return categories.get(category.toLowerCase());
     }
 
-    public List<String> getCategories() {
+    List<String> getCategories() {
         return categoryList;
     }
 
-    public boolean isCategory(String category) {
+    boolean isCategory(String category) {
         return categories.containsKey(category.toLowerCase());
     }
 
-    public boolean isHead(String key) {
+    boolean isHead(String key) {
         return heads.containsKey(key.toLowerCase());
     }
 
@@ -122,7 +122,7 @@ public class MinecraftHeads extends JavaPlugin {
         return new URL(getConfig().getString("spreadsheet-url", DEFAULT_URL));
     }
 
-    public void removeUnsafe() {
+    void removeUnsafe() {
         try {
             File temp = new File(getDataFolder(), "minecraftheads-temporary.csv");
             if (temp.exists()) {
@@ -245,25 +245,25 @@ public class MinecraftHeads extends JavaPlugin {
     }
 
     @AllArgsConstructor
-    public class Head {
+    class Head {
 
         @Getter
         private final String displayName, username, id;
         private final boolean safe;
 
-        public boolean isSafe() {
+        boolean isSafe() {
             return safe;
         }
 
-        public String getSafe() {
+        String getSafe() {
             return ChatColor.RED + "UNSAFE";
         }
     }
 
-    public interface Callback {
+    interface Callback {
 
-        public void onCompletion();
+        void onCompletion();
 
-        public void onFailure();
+        void onFailure();
     }
 }
