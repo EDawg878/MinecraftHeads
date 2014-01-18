@@ -1,9 +1,10 @@
 name: MinecraftHeads
 main: com.edawg878.minecraftheads.MinecraftHeads
-version: 1.02
+version: 1.06
 author: EDawg878
-website: EDawg878.com
+website: http://EDawg878.com/
 commands:
     mcheads:
         default: true
-        description: Base command of Minecraft Heads
+        description: Base command of MinecraftHeads
+        aliases: [mch, head]
