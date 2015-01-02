@@ -4,9 +4,10 @@ import com.edawg878.minecraftheads.MinecraftHeads.Callback;
 import com.edawg878.minecraftheads.MinecraftHeads.Head;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
-import net.minecraft.util.org.apache.commons.lang3.math.NumberUtils;
-import net.minecraft.util.org.apache.commons.lang3.text.WordUtils;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
